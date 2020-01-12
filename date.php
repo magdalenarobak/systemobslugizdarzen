@@ -1,7 +1,7 @@
 <?php
 require_once("config.php");
 
-$polaczenie = @new mysqli($host, $user, $password, $name);
+    $polaczenie = @new mysqli($host, $user, $password, $name);
 
 function dni_mies($mies,$rok) {
 
@@ -43,13 +43,8 @@ return $mies_pl[$mies];
 <meta http-equiv="content-type" content="text/xml; charset=iso-8859-2" />
 <meta http-equiv="content-language" content="pl" />
 
-<style type="text/css">
-#kalendarz {width: 250px;}
-#kalendarz p {text-align: center;}
-#kalendarz li {display: inline; padding:2px 5px; }
-#kalendarz .akt {color: #990001; font-weight: bold;}
-#kalendarz .hidden {visibility: hidden;}
-</style>
+<link rel="Stylesheet" href="css/style2.css">
+
 </head>
 <body>
 
