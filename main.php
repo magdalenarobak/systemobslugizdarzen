@@ -62,7 +62,6 @@
             $polaczenie->close();
             ?>
             </div>
-           
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php
@@ -99,35 +98,39 @@
                 $polaczenie = @new mysqli($host, $user, $password, $name);
                 $polaczenie->query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
                 $polaczenie->query("SET CHARSET utf8");	
-                $zapytanie = "SELECT z.zdarzenie, z.opis, z.data, p.nazwa, u.imie, u.nazwisko FROM Zdarzenia z
+                $zapytanie = "SELECT z.zdarzenie, z.opis, z.data, z.nr_pokoju, p.nazwa, u.imie, u.nazwisko FROM Zdarzenia z
 						LEFT JOIN Kategorie k ON z.idKategorii = k.idKategorii
                         LEFT JOIN Priorytety p ON z.idPriorytetu = p.idPriorytetu 
                         LEFT JOIN Uzytkownicy u ON z.idUzytkownika = u.idUzytkownika
-                        WHERE k.idKategorii = 1";
+                        WHERE k.idKategorii = 1
+                        ORDER BY z.data DESC";
                 $wynik = $polaczenie->query($zapytanie);
                 while ($baza = $wynik->fetch_assoc()){ 
 					echo "<div class='butt-input100 validate-input bg1'>";
                         echo "<span class='label-input100'>Temat zadania</span>";
-                    echo"<div class='create'>";
-                        echo"<div class='input100 input100-big'>".$baza['zdarzenie']."</div>";
-                        echo"<div>Data i godzina:<br>".$baza['data']."</div>";
-                    echo"</div>";
+                        echo"<div class='create'>";
+                            echo"<div class='input100 input100-big'>".$baza['zdarzenie']."</div>";
+                            echo"<div class='no-wrap'>Data i godzina: <i>".$baza['data']."</i><br>
+                            Nr pokoju: <i>".$baza['nr_pokoju']."</i></div>";
+                        echo"</div>";
                     echo"</div>";
 
                     echo"<div class='butt-input100 validate-input'>";
                         echo"<span class='label-input100'>Opis zadania</span>";
-                        echo"<textarea class='input100'>".$baza['opis']."</textarea>";
+                        echo"<div class='input100'>".$baza['opis']."</div>";
                     echo"</div>";
                 
                     echo"<div class='butt-input100 input100-select bg1'>";
                         echo"<span class='label-input100'>Priorytet zadania</span>";
-                        echo"<div class='input100'>".$baza['nazwa']."</div>";
+                        echo"<div class='input100'><b>".$baza['nazwa']."</b></div>";
                     echo"</div>";
 
                     echo"<div class='butt-input100 validate-input margin-bottom'>";
                         echo"<span class='label-input100'>Wykonawca zadania</span>";
                         echo"<div class='input100'>".$baza['imie']." ".$baza['nazwisko']."</div>";
                     echo"</div>";
+
+                    echo"<a href='update.php'><button class='przycisk'>Zmień status zadania</button></a>";
                     }
                 ?>
             </div>
@@ -135,42 +138,41 @@
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <h2 class="title">W Trakcie</h2><hr class="h1">
                 <?php
-
-                require_once("config.php");
-
-                $polaczenie = @new mysqli($host, $user, $password, $name);
-                $polaczenie->query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
-                $polaczenie->query("SET CHARSET utf8");	
-                $zapytanie = "SELECT z.zdarzenie, z.opis, z.data, p.nazwa, u.imie, u.nazwisko FROM Zdarzenia z
-						LEFT JOIN Kategorie k ON z.idKategorii = k.idKategorii
-                        LEFT JOIN Priorytety p ON z.idPriorytetu = p.idPriorytetu 
-                        LEFT JOIN Uzytkownicy u ON z.idUzytkownika = u.idUzytkownika
-                        WHERE k.idKategorii = 2";
+	
+                $zapytanie = "SELECT z.zdarzenie, z.opis, z.data, z.nr_pokoju, p.nazwa, u.imie, u.nazwisko FROM Zdarzenia z
+                LEFT JOIN Kategorie k ON z.idKategorii = k.idKategorii
+                LEFT JOIN Priorytety p ON z.idPriorytetu = p.idPriorytetu 
+                LEFT JOIN Uzytkownicy u ON z.idUzytkownika = u.idUzytkownika
+                WHERE k.idKategorii = 2
+                ORDER BY z.data DESC";
                 $wynik = $polaczenie->query($zapytanie);
                 while ($baza = $wynik->fetch_assoc()){ 
-					echo "<div class='butt-input100 validate-input bg1'>";
+                    echo "<div class='butt-input100 validate-input bg1'>";
                         echo "<span class='label-input100'>Temat zadania</span>";
-                    echo"<div class='create'>";
-                        echo"<div class='input100 input100-big'>".$baza['zdarzenie']."</div>";
-                        echo"<div>Data i godzina:<br>".$baza['data']."</div>";
-                    echo"</div>";
+                        echo"<div class='create'>";
+                            echo"<div class='input100 input100-big'>".$baza['zdarzenie']."</div>";
+                            echo"<div class='no-wrap'>Data i godzina: <i>".$baza['data']."</i><br>
+                            Nr pokoju: <i>".$baza['nr_pokoju']."</i></div>";
+                        echo"</div>";
                     echo"</div>";
 
                     echo"<div class='butt-input100 validate-input'>";
                         echo"<span class='label-input100'>Opis zadania</span>";
-                        echo"<textarea class='input100'>".$baza['opis']."</textarea>";
+                        echo"<div class='input100'>".$baza['opis']."</div>";
                     echo"</div>";
-                
+
                     echo"<div class='butt-input100 input100-select bg1'>";
                         echo"<span class='label-input100'>Priorytet zadania</span>";
-                        echo"<div class='input100'>".$baza['nazwa']."</div>";
+                        echo"<div class='input100'><b>".$baza['nazwa']."</b></div>";
                     echo"</div>";
 
                     echo"<div class='butt-input100 validate-input margin-bottom'>";
                         echo"<span class='label-input100'>Wykonawca zadania</span>";
                         echo"<div class='input100'>".$baza['imie']." ".$baza['nazwisko']."</div>";
                     echo"</div>";
-                    }
+
+                    echo"<a href='update.php'><button class='przycisk'>Zmień status zadania</button></a>";
+                }
                 ?>
             </div>
 
@@ -178,41 +180,40 @@
                 <h2 class="title">Zrobione</h2><hr class="h1">
                 <?php
 
-                require_once("config.php");
-
-                $polaczenie = @new mysqli($host, $user, $password, $name);
-                $polaczenie->query("SET NAMES 'utf8' COLLATE 'utf8_polish_ci'");
-                $polaczenie->query("SET CHARSET utf8");	
-                $zapytanie = "SELECT z.zdarzenie, z.opis, z.data, p.nazwa, u.imie, u.nazwisko FROM Zdarzenia z
-						LEFT JOIN Kategorie k ON z.idKategorii = k.idKategorii
-                        LEFT JOIN Priorytety p ON z.idPriorytetu = p.idPriorytetu 
-                        LEFT JOIN Uzytkownicy u ON z.idUzytkownika = u.idUzytkownika
-                        WHERE k.idKategorii = 3";
+                $zapytanie = "SELECT z.zdarzenie, z.opis, z.data, z.nr_pokoju, p.nazwa, u.imie, u.nazwisko FROM Zdarzenia z
+                LEFT JOIN Kategorie k ON z.idKategorii = k.idKategorii
+                LEFT JOIN Priorytety p ON z.idPriorytetu = p.idPriorytetu 
+                LEFT JOIN Uzytkownicy u ON z.idUzytkownika = u.idUzytkownika
+                WHERE k.idKategorii = 3
+                ORDER BY z.data DESC";
                 $wynik = $polaczenie->query($zapytanie);
                 while ($baza = $wynik->fetch_assoc()){ 
-					echo "<div class='butt-input100 validate-input bg1'>";
-                        echo "<span class='label-input100'>Temat zadania</span>";
+                    echo "<div class='butt-input100 validate-input bg1'>";
+                    echo "<span class='label-input100'>Temat zadania</span>";
                     echo"<div class='create'>";
                         echo"<div class='input100 input100-big'>".$baza['zdarzenie']."</div>";
-                        echo"<div>Data i godzina:<br>".$baza['data']."</div>";
+                        echo"<div class='no-wrap'>Data i godzina: <i>".$baza['data']."</i><br>
+                        Nr pokoju: <i>".$baza['nr_pokoju']."</i></div>";
                     echo"</div>";
                     echo"</div>";
 
                     echo"<div class='butt-input100 validate-input'>";
-                        echo"<span class='label-input100'>Opis zadania</span>";
-                        echo"<textarea class='input100'>".$baza['opis']."</textarea>";
+                    echo"<span class='label-input100'>Opis zadania</span>";
+                    echo"<div class='input100'>".$baza['opis']."</div>";
                     echo"</div>";
-                
+
                     echo"<div class='butt-input100 input100-select bg1'>";
-                        echo"<span class='label-input100'>Priorytet zadania</span>";
-                        echo"<div class='input100'>".$baza['nazwa']."</div>";
+                    echo"<span class='label-input100'>Priorytet zadania</span>";
+                    echo"<div class='input100'><b>".$baza['nazwa']."</b></div>";
                     echo"</div>";
 
                     echo"<div class='butt-input100 validate-input margin-bottom'>";
-                        echo"<span class='label-input100'>Wykonawca zadania</span>";
-                        echo"<div class='input100'>".$baza['imie']." ".$baza['nazwisko']."</div>";
+                    echo"<span class='label-input100'>Wykonawca zadania</span>";
+                    echo"<div class='input100'>".$baza['imie']." ".$baza['nazwisko']."</div>";
                     echo"</div>";
-                    }
+
+                    echo"<a href='update.php'><button class='przycisk'>Zmień status zadania</button></a>";
+                }
                 ?>
             </div>
 

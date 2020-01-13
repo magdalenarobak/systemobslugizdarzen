@@ -33,7 +33,7 @@ if($result->num_rows >0){
         echo "W tym dniu zostało wykonanych:  ". $zm ."  zadań";
     }
 } else {
-    echo "brak wyników";
+    echo "Brak wyników lub w tym dniu nie wykonano żadnych zadań";
 }
 
     $polaczenie->close();
