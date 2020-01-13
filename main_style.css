@@ -1,0 +1,132 @@
+.all {
+	background-color:#dee2e6;
+	padding-bottom:95px;
+}
+
+ .create .btn-secondary {
+	float: right;
+	border: none;
+    background-color: rgb(121, 120, 120);
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    font-family: Verdana;
+    border-radius: 5px;
+    margin-right: 35px;
+}
+
+.create {
+	display: flex;
+	justify-content: space-between;
+}
+
+#btn {
+	
+	border: none;
+	background-color: rgb(95, 95, 95);
+	padding: 14px 28px;
+	font-size: 16px;
+	cursor: pointer;
+	display: inline-block;
+	color: white;
+	font-weight: 500;
+	font-family:Verdana;
+	border-radius:5px;
+	margin-left:35px;
+}
+
+#btn:hover {background: #45a049;}
+
+.procent
+{
+	border: none;
+	background-color: rgb(95, 95, 95);
+	padding: 14px 28px;
+	font-size: 16px;
+	display: inline-block;
+	color: white;
+	font-weight: 500;
+	font-family:Verdana;
+	border-radius:5px;
+	margin-left:35px;
+}
+
+.naglowek {
+	margin-top: 0px;
+	text-align:center;
+	font-weight: 500;
+	font-size:35px;
+	font-family:Verdana;
+	margin-left: auto;
+	margin-right:auto;
+	margin-bottom:auto;
+}
+
+
+header .nav-tabs {
+	width: 90%;
+	padding-left: 11%;
+	padding-right: 11%;
+	font-family:Verdana;
+	margin-left: auto;
+	margin-right:auto;
+	margin-bottom:auto;
+}
+
+header .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    margin-right: 10px;
+    text-align: center;
+    padding: 0.5em 18px 0.2em 18px;
+    background-color: #5B6C93;
+	border-right: 1px solid #003300;
+	border-left: 1px solid #003300;
+	border-top: 1px solid #003300;
+	border-width:medium;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+	font-family:Verdana;
+}
+
+header .nav-tabs .nav-item {
+  width: 30%;
+  font-family:Verdana;
+  margin-left: auto;
+	margin-right:auto;
+	margin-bottom:auto;
+}
+
+header .nav-tabs .nav-link.active {
+      color: #5B6C93; 
+	  font-family:Verdana;
+	  
+}
+      
+header .nav-tabs a {
+    color: white;
+	font-family:Verdana;
+}
+
+
+.tab-content {
+	background-color:#ffffff;
+    padding-left: 11%;
+    padding-right: 11%;
+    margin-left: auto;
+	margin-right:auto;
+	margin-bottom:auto;
+	font-family:Verdana;
+	border: 1px solid #003300;
+	border-bottom-right-radius:1rem;
+	border-bottom-left-radius:1rem;
+	border-width:medium;
+	min-height: 400px;
+	width:70%;
+}
+
+.tab-pane {
+	padding-top:15px;
+}
+

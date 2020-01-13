@@ -1,4 +1,6 @@
+
 <html>
+<link rel="Stylesheet" href="css/style3.css">
 <body>
 
 Raport dla dnia: <?php echo $_POST["dzien"]; ?><br>
@@ -11,7 +13,7 @@ $dzien = $_POST['dzien'];
 
         $data=$rok."-".$miesiac."-".$dzien;
 ?>
-Data:<?php echo $data?>;
+
 
 <?php
 require_once("config.php");
@@ -36,6 +38,5 @@ if($result->num_rows >0){
 
     $polaczenie->close();
 ?>
-
 </body>
 </html> 
